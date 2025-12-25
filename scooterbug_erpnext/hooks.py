@@ -26,8 +26,8 @@ after_install = "scooterbug_erpnext.install.after_install"
 # Fixtures
 # --------
 fixtures = [
-    {"dt": "Custom Field", "filters": [["module", "=", "ScooterBug"]]},
-    {"dt": "Property Setter", "filters": [["module", "=", "ScooterBug"]]},
+    {"dt": "Custom Field", "filters": [["module", "=", "Scooterbug Erpnext"]]},
+    {"dt": "Property Setter", "filters": [["module", "=", "Scooterbug Erpnext"]]},
 ]
 
 # Document Events

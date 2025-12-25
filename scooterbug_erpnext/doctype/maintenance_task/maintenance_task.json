@@ -1,6 +1,6 @@
 {
   "name": "Maintenance Task",
-  "module": "ScooterBug",
+  "module": "Scooterbug Erpnext",
   "doctype": "DocType",
   "document_type": "Document",
   "engine": "InnoDB",
