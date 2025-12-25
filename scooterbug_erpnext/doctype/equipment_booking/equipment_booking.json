@@ -1,6 +1,6 @@
 {
   "name": "Equipment Booking",
-  "module": "scooterbug_erpnext",
+  "module": "ScooterBug",
   "doctype": "DocType",
   "document_type": "Document",
   "engine": "InnoDB",
