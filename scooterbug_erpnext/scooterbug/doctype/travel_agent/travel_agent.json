@@ -1,6 +1,6 @@
 {
   "name": "Travel Agent",
-  "module": "scooterbug_erpnext",
+  "module": "ScooterBug",
   "doctype": "DocType",
   "document_type": "Document",
   "engine": "InnoDB",
