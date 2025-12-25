@@ -2,9 +2,22 @@ import frappe
 
 def after_install():
     """Setup initial data after app installation"""
-    create_locations()
-    create_sample_equipment_types()
-    print("ScooterBug app installed successfully!")
+    try:
+        # Only create data if the doctypes exist
+        if frappe.db.exists("DocType", "ScooterBug Location"):
+            create_locations()
+        else:
+            print("ScooterBug Location doctype not found, skipping location creation")
+        
+        if frappe.db.exists("DocType", "Equipment"):
+            create_sample_equipment_types()
+        else:
+            print("Equipment doctype not found, skipping equipment creation")
+        
+        print("ScooterBug app installed successfully!")
+    except Exception as e:
+        print(f"Warning during ScooterBug installation: {e}")
+        print("You may need to run bench migrate to create the doctypes first")
 
 def create_locations():
     """Create default ScooterBug locations"""
@@ -54,13 +67,16 @@ def create_locations():
     ]
     
     for loc in locations:
-        if not frappe.db.exists("ScooterBug Location", loc["location_code"]):
-            doc = frappe.get_doc({
-                "doctype": "ScooterBug Location",
-                **loc
-            })
-            doc.insert(ignore_permissions=True)
-            print(f"Created location: {loc['location_name']}")
+        try:
+            if not frappe.db.exists("ScooterBug Location", loc["location_code"]):
+                doc = frappe.get_doc({
+                    "doctype": "ScooterBug Location",
+                    **loc
+                })
+                doc.insert(ignore_permissions=True)
+                print(f"Created location: {loc['location_name']}")
+        except Exception as e:
+            print(f"Could not create location {loc['location_name']}: {e}")
 
 def create_sample_equipment_types():
     """Create sample equipment for demonstration"""
@@ -146,12 +162,18 @@ def create_sample_equipment_types():
     ]
     
     for eq in equipment_list:
-        if not frappe.db.exists("Equipment", eq["equipment_id"]):
-            doc = frappe.get_doc({
-                "doctype": "Equipment",
-                **eq
-            })
-            doc.insert(ignore_permissions=True)
-            print(f"Created equipment: {eq['equipment_name']}")
+        try:
+            if not frappe.db.exists("Equipment", eq["equipment_id"]):
+                doc = frappe.get_doc({
+                    "doctype": "Equipment",
+                    **eq
+                })
+                doc.insert(ignore_permissions=True)
+                print(f"Created equipment: {eq['equipment_name']}")
+        except Exception as e:
+            print(f"Could not create equipment {eq['equipment_name']}: {e}")
     
-    frappe.db.commit()
+    try:
+        frappe.db.commit()
+    except Exception:
+        pass
