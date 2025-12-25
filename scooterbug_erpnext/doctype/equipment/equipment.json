@@ -1,6 +1,6 @@
 {
   "name": "Equipment",
-  "module": "ScooterBug",
+  "module": "scooterbug_erpnext",
   "doctype": "DocType",
   "document_type": "Document",
   "engine": "InnoDB",
