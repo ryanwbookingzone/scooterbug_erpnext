@@ -1,1 +1,1 @@
-Scooterbug Erpnext
+scooterbug_erpnext
