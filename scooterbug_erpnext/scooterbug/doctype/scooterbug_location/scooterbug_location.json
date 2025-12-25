@@ -1,6 +1,6 @@
 {
   "name": "ScooterBug Location",
-  "module": "scooterbug_erpnext",
+  "module": "scooterbug",
   "doctype": "DocType",
   "document_type": "Setup",
   "engine": "InnoDB",
