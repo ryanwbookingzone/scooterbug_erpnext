@@ -1,4 +1,4 @@
-app_name = "scooterbug"
+app_name = "scooterbug_erpnext"
 app_title = "ScooterBug"
 app_publisher = "BookingZone"
 app_description = "Equipment Rental Management System for Theme Parks"
@@ -10,18 +10,18 @@ app_version = "1.0.0"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/scooterbug/css/scooterbug.css"
-# app_include_js = "/assets/scooterbug/js/scooterbug.js"
+# app_include_css = "/assets/scooterbug_erpnext/css/scooterbug.css"
+# app_include_js = "/assets/scooterbug_erpnext/js/scooterbug.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/scooterbug/css/scooterbug.css"
-# web_include_js = "/assets/scooterbug/js/scooterbug.js"
+# web_include_css = "/assets/scooterbug_erpnext/css/scooterbug.css"
+# web_include_js = "/assets/scooterbug_erpnext/js/scooterbug.js"
 
 # Installation
 # ------------
 
 # before_install = "scooterbug_erpnext.install.before_install"
-after_install = "scooterbug.install.after_install"
+after_install = "scooterbug_erpnext.install.after_install"
 
 # Fixtures
 # --------
@@ -35,11 +35,11 @@ fixtures = [
 
 doc_events = {
     "Equipment Booking": {
-        "on_submit": "scooterbug.api.booking.on_booking_submit",
-        "on_cancel": "scooterbug.api.booking.on_booking_cancel",
+        "on_submit": "scooterbug_erpnext.api.booking.on_booking_submit",
+        "on_cancel": "scooterbug_erpnext.api.booking.on_booking_cancel",
     },
     "Check In Out Log": {
-        "after_insert": "scooterbug.api.checkinout.update_equipment_status",
+        "after_insert": "scooterbug_erpnext.api.checkinout.update_equipment_status",
     },
 }
 
@@ -48,11 +48,11 @@ doc_events = {
 
 scheduler_events = {
     "daily": [
-        "scooterbug.tasks.send_booking_reminders",
-        "scooterbug.tasks.check_overdue_returns",
+        "scooterbug_erpnext.tasks.send_booking_reminders",
+        "scooterbug_erpnext.tasks.check_overdue_returns",
     ],
     "hourly": [
-        "scooterbug.tasks.update_equipment_availability",
+        "scooterbug_erpnext.tasks.update_equipment_availability",
     ],
 }
 
@@ -60,8 +60,8 @@ scheduler_events = {
 # -----------
 
 has_permission = {
-    "Equipment": "scooterbug.permissions.equipment_permission",
-    "Equipment Booking": "scooterbug.permissions.booking_permission",
+    "Equipment": "scooterbug_erpnext.permissions.equipment_permission",
+    "Equipment Booking": "scooterbug_erpnext.permissions.booking_permission",
 }
 
 # DocType Class
