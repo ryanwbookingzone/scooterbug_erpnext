@@ -1,0 +1,14 @@
+{
+  "name": "Prime Cost Dashboard",
+  "module": "BookingZone",
+  "doctype": "Page",
+  "page_name": "prime-cost-dashboard",
+  "title": "Prime Cost Dashboard",
+  "icon": "fa fa-chart-pie",
+  "standard": "Yes",
+  "roles": [
+    {"role": "System Manager"},
+    {"role": "Restaurant Manager"},
+    {"role": "Accounts Manager"}
+  ]
+}

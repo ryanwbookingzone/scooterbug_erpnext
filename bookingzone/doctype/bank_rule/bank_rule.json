@@ -1,0 +1,254 @@
+{
+  "name": "Bank Rule",
+  "module": "BookingZone",
+  "doctype": "DocType",
+  "document_type": "Document",
+  "engine": "InnoDB",
+  "field_order": [
+    "rule_name",
+    "is_active",
+    "priority",
+    "column_break_1",
+    "bank_account",
+    "transaction_type",
+    "section_conditions",
+    "match_type",
+    "match_field",
+    "match_operator",
+    "match_value",
+    "column_break_2",
+    "min_amount",
+    "max_amount",
+    "section_actions",
+    "action_type",
+    "party_type",
+    "party",
+    "column_break_3",
+    "account",
+    "cost_center",
+    "section_categorization",
+    "expense_category",
+    "tax_category",
+    "column_break_4",
+    "add_tags",
+    "notes_template",
+    "section_stats",
+    "times_matched",
+    "last_matched",
+    "total_amount_matched"
+  ],
+  "fields": [
+    {
+      "fieldname": "rule_name",
+      "fieldtype": "Data",
+      "label": "Rule Name",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "is_active",
+      "fieldtype": "Check",
+      "label": "Is Active",
+      "default": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "priority",
+      "fieldtype": "Int",
+      "label": "Priority",
+      "default": 10,
+      "description": "Lower number = higher priority"
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "bank_account",
+      "fieldtype": "Link",
+      "label": "Bank Account",
+      "options": "Bank Account",
+      "description": "Leave blank to apply to all accounts"
+    },
+    {
+      "fieldname": "transaction_type",
+      "fieldtype": "Select",
+      "label": "Transaction Type",
+      "options": "\nDebit\nCredit",
+      "description": "Leave blank for both"
+    },
+    {
+      "fieldname": "section_conditions",
+      "fieldtype": "Section Break",
+      "label": "Match Conditions"
+    },
+    {
+      "fieldname": "match_type",
+      "fieldtype": "Select",
+      "label": "Match Type",
+      "options": "Contains\nStarts With\nEnds With\nExact Match\nRegex",
+      "default": "Contains",
+      "reqd": 1
+    },
+    {
+      "fieldname": "match_field",
+      "fieldtype": "Select",
+      "label": "Match Field",
+      "options": "Description\nReference Number\nParty Name",
+      "default": "Description",
+      "reqd": 1
+    },
+    {
+      "fieldname": "match_operator",
+      "fieldtype": "Select",
+      "label": "Match Operator",
+      "options": "AND\nOR",
+      "default": "AND"
+    },
+    {
+      "fieldname": "match_value",
+      "fieldtype": "Data",
+      "label": "Match Value",
+      "reqd": 1,
+      "in_list_view": 1,
+      "description": "Text to match (case-insensitive)"
+    },
+    {
+      "fieldname": "column_break_2",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "min_amount",
+      "fieldtype": "Currency",
+      "label": "Minimum Amount",
+      "description": "Optional amount filter"
+    },
+    {
+      "fieldname": "max_amount",
+      "fieldtype": "Currency",
+      "label": "Maximum Amount",
+      "description": "Optional amount filter"
+    },
+    {
+      "fieldname": "section_actions",
+      "fieldtype": "Section Break",
+      "label": "Actions"
+    },
+    {
+      "fieldname": "action_type",
+      "fieldtype": "Select",
+      "label": "Action Type",
+      "options": "Categorize\nCreate Payment Entry\nCreate Journal Entry\nLink to Party",
+      "default": "Categorize",
+      "reqd": 1
+    },
+    {
+      "fieldname": "party_type",
+      "fieldtype": "Select",
+      "label": "Party Type",
+      "options": "\nCustomer\nSupplier\nEmployee"
+    },
+    {
+      "fieldname": "party",
+      "fieldtype": "Dynamic Link",
+      "label": "Party",
+      "options": "party_type"
+    },
+    {
+      "fieldname": "column_break_3",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "account",
+      "fieldtype": "Link",
+      "label": "Account",
+      "options": "Account",
+      "description": "GL Account to categorize to"
+    },
+    {
+      "fieldname": "cost_center",
+      "fieldtype": "Link",
+      "label": "Cost Center",
+      "options": "Cost Center"
+    },
+    {
+      "fieldname": "section_categorization",
+      "fieldtype": "Section Break",
+      "label": "Additional Categorization"
+    },
+    {
+      "fieldname": "expense_category",
+      "fieldtype": "Select",
+      "label": "Expense Category",
+      "options": "\nFood & Beverage\nLabor\nUtilities\nRent\nMarketing\nSupplies\nEquipment\nMaintenance\nProfessional Services\nInsurance\nTaxes\nOther"
+    },
+    {
+      "fieldname": "tax_category",
+      "fieldtype": "Link",
+      "label": "Tax Category",
+      "options": "Tax Category"
+    },
+    {
+      "fieldname": "column_break_4",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "add_tags",
+      "fieldtype": "Small Text",
+      "label": "Add Tags",
+      "description": "Comma-separated tags to add"
+    },
+    {
+      "fieldname": "notes_template",
+      "fieldtype": "Small Text",
+      "label": "Notes Template",
+      "description": "Template for transaction notes"
+    },
+    {
+      "fieldname": "section_stats",
+      "fieldtype": "Section Break",
+      "label": "Statistics",
+      "collapsible": 1
+    },
+    {
+      "fieldname": "times_matched",
+      "fieldtype": "Int",
+      "label": "Times Matched",
+      "read_only": 1,
+      "default": 0
+    },
+    {
+      "fieldname": "last_matched",
+      "fieldtype": "Datetime",
+      "label": "Last Matched",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_amount_matched",
+      "fieldtype": "Currency",
+      "label": "Total Amount Matched",
+      "read_only": 1
+    }
+  ],
+  "autoname": "field:rule_name",
+  "title_field": "rule_name",
+  "search_fields": "rule_name, match_value, account",
+  "sort_field": "priority",
+  "sort_order": "ASC",
+  "track_changes": 1,
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1
+    },
+    {
+      "role": "Accounts Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    }
+  ]
+}

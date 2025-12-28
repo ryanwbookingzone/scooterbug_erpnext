@@ -1,0 +1,258 @@
+{
+  "name": "Par Level",
+  "module": "BookingZone",
+  "doctype": "DocType",
+  "document_type": "Document",
+  "engine": "InnoDB",
+  "field_order": [
+    "item_code",
+    "item_name",
+    "item_group",
+    "column_break_1",
+    "outlet",
+    "warehouse",
+    "is_active",
+    "section_levels",
+    "min_level",
+    "par_level",
+    "max_level",
+    "column_break_2",
+    "reorder_qty",
+    "uom",
+    "section_current",
+    "current_stock",
+    "stock_status",
+    "column_break_3",
+    "days_of_stock",
+    "last_order_date",
+    "section_usage",
+    "avg_daily_usage",
+    "usage_calculation_days",
+    "column_break_4",
+    "lead_time_days",
+    "safety_stock_days",
+    "section_auto",
+    "auto_reorder",
+    "preferred_supplier",
+    "last_reorder_date"
+  ],
+  "fields": [
+    {
+      "fieldname": "item_code",
+      "fieldtype": "Link",
+      "label": "Item Code",
+      "options": "Item",
+      "reqd": 1,
+      "in_list_view": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "item_name",
+      "fieldtype": "Data",
+      "label": "Item Name",
+      "fetch_from": "item_code.item_name",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "item_group",
+      "fieldtype": "Link",
+      "label": "Item Group",
+      "options": "Item Group",
+      "fetch_from": "item_code.item_group",
+      "read_only": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "outlet",
+      "fieldtype": "Link",
+      "label": "Outlet",
+      "options": "Outlet",
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "warehouse",
+      "fieldtype": "Link",
+      "label": "Warehouse",
+      "options": "Warehouse",
+      "reqd": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "is_active",
+      "fieldtype": "Check",
+      "label": "Is Active",
+      "default": 1
+    },
+    {
+      "fieldname": "section_levels",
+      "fieldtype": "Section Break",
+      "label": "Stock Levels"
+    },
+    {
+      "fieldname": "min_level",
+      "fieldtype": "Float",
+      "label": "Minimum Level",
+      "reqd": 1,
+      "description": "Reorder when stock falls below this"
+    },
+    {
+      "fieldname": "par_level",
+      "fieldtype": "Float",
+      "label": "Par Level",
+      "reqd": 1,
+      "in_list_view": 1,
+      "description": "Ideal stock level to maintain"
+    },
+    {
+      "fieldname": "max_level",
+      "fieldtype": "Float",
+      "label": "Maximum Level",
+      "description": "Don't order above this level"
+    },
+    {
+      "fieldname": "column_break_2",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "reorder_qty",
+      "fieldtype": "Float",
+      "label": "Reorder Quantity",
+      "description": "Quantity to order when reordering"
+    },
+    {
+      "fieldname": "uom",
+      "fieldtype": "Link",
+      "label": "UOM",
+      "options": "UOM",
+      "fetch_from": "item_code.stock_uom"
+    },
+    {
+      "fieldname": "section_current",
+      "fieldtype": "Section Break",
+      "label": "Current Status"
+    },
+    {
+      "fieldname": "current_stock",
+      "fieldtype": "Float",
+      "label": "Current Stock",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "stock_status",
+      "fieldtype": "Select",
+      "label": "Stock Status",
+      "options": "OK\nLow\nCritical\nOverstock",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "column_break_3",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "days_of_stock",
+      "fieldtype": "Float",
+      "label": "Days of Stock",
+      "read_only": 1,
+      "description": "Based on average daily usage"
+    },
+    {
+      "fieldname": "last_order_date",
+      "fieldtype": "Date",
+      "label": "Last Order Date",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_usage",
+      "fieldtype": "Section Break",
+      "label": "Usage Analysis"
+    },
+    {
+      "fieldname": "avg_daily_usage",
+      "fieldtype": "Float",
+      "label": "Avg Daily Usage",
+      "read_only": 1
+    },
+    {
+      "fieldname": "usage_calculation_days",
+      "fieldtype": "Int",
+      "label": "Usage Calculation Days",
+      "default": 30,
+      "description": "Days to use for usage calculation"
+    },
+    {
+      "fieldname": "column_break_4",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "lead_time_days",
+      "fieldtype": "Int",
+      "label": "Lead Time (Days)",
+      "default": 2,
+      "description": "Days from order to delivery"
+    },
+    {
+      "fieldname": "safety_stock_days",
+      "fieldtype": "Int",
+      "label": "Safety Stock (Days)",
+      "default": 1,
+      "description": "Extra days of stock to maintain"
+    },
+    {
+      "fieldname": "section_auto",
+      "fieldtype": "Section Break",
+      "label": "Auto Reorder"
+    },
+    {
+      "fieldname": "auto_reorder",
+      "fieldtype": "Check",
+      "label": "Enable Auto Reorder",
+      "description": "Automatically create Material Request when below min level"
+    },
+    {
+      "fieldname": "preferred_supplier",
+      "fieldtype": "Link",
+      "label": "Preferred Supplier",
+      "options": "Supplier"
+    },
+    {
+      "fieldname": "last_reorder_date",
+      "fieldtype": "Date",
+      "label": "Last Auto Reorder Date",
+      "read_only": 1
+    }
+  ],
+  "autoname": "format:{item_code}-{warehouse}",
+  "title_field": "item_name",
+  "search_fields": "item_code, item_name, warehouse, outlet",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1
+    },
+    {
+      "role": "Restaurant Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    },
+    {
+      "role": "Stock Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    }
+  ]
+}

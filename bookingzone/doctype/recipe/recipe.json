@@ -1,0 +1,221 @@
+{
+  "name": "Recipe",
+  "module": "BookingZone",
+  "doctype": "DocType",
+  "document_type": "Document",
+  "engine": "InnoDB",
+  "field_order": [
+    "recipe_name",
+    "menu_item",
+    "category",
+    "column_break_1",
+    "status",
+    "yield_quantity",
+    "yield_unit",
+    "section_ingredients",
+    "ingredients",
+    "section_costs",
+    "total_ingredient_cost",
+    "cost_per_portion",
+    "column_break_2",
+    "selling_price",
+    "food_cost_percentage",
+    "gross_margin",
+    "section_preparation",
+    "prep_time_minutes",
+    "cook_time_minutes",
+    "column_break_3",
+    "difficulty_level",
+    "allergens",
+    "section_instructions",
+    "instructions",
+    "section_notes",
+    "notes",
+    "image"
+  ],
+  "fields": [
+    {
+      "fieldname": "recipe_name",
+      "fieldtype": "Data",
+      "label": "Recipe Name",
+      "reqd": 1,
+      "in_list_view": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "menu_item",
+      "fieldtype": "Link",
+      "label": "Menu Item",
+      "options": "Menu Item",
+      "description": "Link to existing Menu Item DocType"
+    },
+    {
+      "fieldname": "category",
+      "fieldtype": "Link",
+      "label": "Category",
+      "options": "Menu Category"
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Draft\nActive\nDiscontinued",
+      "default": "Draft",
+      "in_list_view": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "yield_quantity",
+      "fieldtype": "Float",
+      "label": "Yield Quantity",
+      "default": 1,
+      "description": "Number of portions this recipe makes"
+    },
+    {
+      "fieldname": "yield_unit",
+      "fieldtype": "Link",
+      "label": "Yield Unit",
+      "options": "UOM",
+      "default": "Nos"
+    },
+    {
+      "fieldname": "section_ingredients",
+      "fieldtype": "Section Break",
+      "label": "Ingredients"
+    },
+    {
+      "fieldname": "ingredients",
+      "fieldtype": "Table",
+      "label": "Ingredients",
+      "options": "Recipe Ingredient",
+      "reqd": 1
+    },
+    {
+      "fieldname": "section_costs",
+      "fieldtype": "Section Break",
+      "label": "Cost Analysis"
+    },
+    {
+      "fieldname": "total_ingredient_cost",
+      "fieldtype": "Currency",
+      "label": "Total Ingredient Cost",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "cost_per_portion",
+      "fieldtype": "Currency",
+      "label": "Cost Per Portion",
+      "read_only": 1
+    },
+    {
+      "fieldname": "column_break_2",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "selling_price",
+      "fieldtype": "Currency",
+      "label": "Selling Price",
+      "description": "Menu selling price"
+    },
+    {
+      "fieldname": "food_cost_percentage",
+      "fieldtype": "Percent",
+      "label": "Food Cost %",
+      "read_only": 1,
+      "description": "Cost / Selling Price"
+    },
+    {
+      "fieldname": "gross_margin",
+      "fieldtype": "Currency",
+      "label": "Gross Margin",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_preparation",
+      "fieldtype": "Section Break",
+      "label": "Preparation Details"
+    },
+    {
+      "fieldname": "prep_time_minutes",
+      "fieldtype": "Int",
+      "label": "Prep Time (minutes)"
+    },
+    {
+      "fieldname": "cook_time_minutes",
+      "fieldtype": "Int",
+      "label": "Cook Time (minutes)"
+    },
+    {
+      "fieldname": "column_break_3",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "difficulty_level",
+      "fieldtype": "Select",
+      "label": "Difficulty Level",
+      "options": "Easy\nMedium\nHard\nExpert"
+    },
+    {
+      "fieldname": "allergens",
+      "fieldtype": "MultiSelect",
+      "label": "Allergens",
+      "options": "Gluten\nDairy\nNuts\nEggs\nSoy\nShellfish\nFish\nSesame"
+    },
+    {
+      "fieldname": "section_instructions",
+      "fieldtype": "Section Break",
+      "label": "Instructions"
+    },
+    {
+      "fieldname": "instructions",
+      "fieldtype": "Text Editor",
+      "label": "Preparation Instructions"
+    },
+    {
+      "fieldname": "section_notes",
+      "fieldtype": "Section Break",
+      "label": "Additional Information"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Small Text",
+      "label": "Notes"
+    },
+    {
+      "fieldname": "image",
+      "fieldtype": "Attach Image",
+      "label": "Recipe Image"
+    }
+  ],
+  "autoname": "field:recipe_name",
+  "title_field": "recipe_name",
+  "image_field": "image",
+  "search_fields": "recipe_name, menu_item, category",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1
+    },
+    {
+      "role": "Restaurant Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    },
+    {
+      "role": "Kitchen Staff",
+      "read": 1
+    }
+  ]
+}

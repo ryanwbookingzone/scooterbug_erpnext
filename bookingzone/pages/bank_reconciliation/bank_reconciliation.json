@@ -1,0 +1,14 @@
+{
+  "name": "Bank Reconciliation",
+  "module": "BookingZone",
+  "doctype": "Page",
+  "page_name": "bank-reconciliation",
+  "title": "Bank Reconciliation",
+  "icon": "fa fa-university",
+  "standard": "Yes",
+  "roles": [
+    {"role": "System Manager"},
+    {"role": "Accounts Manager"},
+    {"role": "Accounts User"}
+  ]
+}

@@ -1,0 +1,322 @@
+{
+  "name": "Daily Sales Summary",
+  "module": "BookingZone",
+  "doctype": "DocType",
+  "document_type": "Document",
+  "engine": "InnoDB",
+  "field_order": [
+    "summary_date",
+    "outlet",
+    "column_break_1",
+    "status",
+    "created_by",
+    "section_sales",
+    "gross_sales",
+    "discounts",
+    "net_sales",
+    "column_break_2",
+    "tax_collected",
+    "tips",
+    "total_revenue",
+    "section_transactions",
+    "total_transactions",
+    "avg_ticket_size",
+    "column_break_3",
+    "guest_count",
+    "avg_spend_per_guest",
+    "section_payments",
+    "cash_payments",
+    "card_payments",
+    "gift_card_payments",
+    "column_break_4",
+    "game_card_payments",
+    "points_payments",
+    "other_payments",
+    "section_categories",
+    "food_sales",
+    "beverage_sales",
+    "merchandise_sales",
+    "column_break_5",
+    "entertainment_sales",
+    "service_sales",
+    "other_sales",
+    "section_labor",
+    "labor_hours",
+    "labor_cost",
+    "column_break_6",
+    "sales_per_labor_hour",
+    "labor_cost_percentage",
+    "section_notes",
+    "manager_notes",
+    "weather",
+    "special_events"
+  ],
+  "fields": [
+    {
+      "fieldname": "summary_date",
+      "fieldtype": "Date",
+      "label": "Date",
+      "reqd": 1,
+      "in_list_view": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "outlet",
+      "fieldtype": "Link",
+      "label": "Outlet",
+      "options": "Outlet",
+      "reqd": 1,
+      "in_list_view": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Draft\nReviewed\nApproved",
+      "default": "Draft",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "created_by",
+      "fieldtype": "Link",
+      "label": "Created By",
+      "options": "User",
+      "default": "__user",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_sales",
+      "fieldtype": "Section Break",
+      "label": "Sales Summary"
+    },
+    {
+      "fieldname": "gross_sales",
+      "fieldtype": "Currency",
+      "label": "Gross Sales",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "discounts",
+      "fieldtype": "Currency",
+      "label": "Discounts"
+    },
+    {
+      "fieldname": "net_sales",
+      "fieldtype": "Currency",
+      "label": "Net Sales",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "column_break_2",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "tax_collected",
+      "fieldtype": "Currency",
+      "label": "Tax Collected"
+    },
+    {
+      "fieldname": "tips",
+      "fieldtype": "Currency",
+      "label": "Tips"
+    },
+    {
+      "fieldname": "total_revenue",
+      "fieldtype": "Currency",
+      "label": "Total Revenue",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_transactions",
+      "fieldtype": "Section Break",
+      "label": "Transaction Metrics"
+    },
+    {
+      "fieldname": "total_transactions",
+      "fieldtype": "Int",
+      "label": "Total Transactions"
+    },
+    {
+      "fieldname": "avg_ticket_size",
+      "fieldtype": "Currency",
+      "label": "Avg Ticket Size",
+      "read_only": 1
+    },
+    {
+      "fieldname": "column_break_3",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "guest_count",
+      "fieldtype": "Int",
+      "label": "Guest Count"
+    },
+    {
+      "fieldname": "avg_spend_per_guest",
+      "fieldtype": "Currency",
+      "label": "Avg Spend Per Guest",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_payments",
+      "fieldtype": "Section Break",
+      "label": "Payment Breakdown"
+    },
+    {
+      "fieldname": "cash_payments",
+      "fieldtype": "Currency",
+      "label": "Cash"
+    },
+    {
+      "fieldname": "card_payments",
+      "fieldtype": "Currency",
+      "label": "Card"
+    },
+    {
+      "fieldname": "gift_card_payments",
+      "fieldtype": "Currency",
+      "label": "Gift Card"
+    },
+    {
+      "fieldname": "column_break_4",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "game_card_payments",
+      "fieldtype": "Currency",
+      "label": "Game Card"
+    },
+    {
+      "fieldname": "points_payments",
+      "fieldtype": "Currency",
+      "label": "Points Redemption"
+    },
+    {
+      "fieldname": "other_payments",
+      "fieldtype": "Currency",
+      "label": "Other"
+    },
+    {
+      "fieldname": "section_categories",
+      "fieldtype": "Section Break",
+      "label": "Sales by Category"
+    },
+    {
+      "fieldname": "food_sales",
+      "fieldtype": "Currency",
+      "label": "Food"
+    },
+    {
+      "fieldname": "beverage_sales",
+      "fieldtype": "Currency",
+      "label": "Beverage"
+    },
+    {
+      "fieldname": "merchandise_sales",
+      "fieldtype": "Currency",
+      "label": "Merchandise"
+    },
+    {
+      "fieldname": "column_break_5",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "entertainment_sales",
+      "fieldtype": "Currency",
+      "label": "Entertainment"
+    },
+    {
+      "fieldname": "service_sales",
+      "fieldtype": "Currency",
+      "label": "Services"
+    },
+    {
+      "fieldname": "other_sales",
+      "fieldtype": "Currency",
+      "label": "Other"
+    },
+    {
+      "fieldname": "section_labor",
+      "fieldtype": "Section Break",
+      "label": "Labor Metrics"
+    },
+    {
+      "fieldname": "labor_hours",
+      "fieldtype": "Float",
+      "label": "Labor Hours"
+    },
+    {
+      "fieldname": "labor_cost",
+      "fieldtype": "Currency",
+      "label": "Labor Cost"
+    },
+    {
+      "fieldname": "column_break_6",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "sales_per_labor_hour",
+      "fieldtype": "Currency",
+      "label": "Sales Per Labor Hour",
+      "read_only": 1
+    },
+    {
+      "fieldname": "labor_cost_percentage",
+      "fieldtype": "Percent",
+      "label": "Labor Cost %",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_notes",
+      "fieldtype": "Section Break",
+      "label": "Notes"
+    },
+    {
+      "fieldname": "manager_notes",
+      "fieldtype": "Small Text",
+      "label": "Manager Notes"
+    },
+    {
+      "fieldname": "weather",
+      "fieldtype": "Select",
+      "label": "Weather",
+      "options": "\nSunny\nCloudy\nRainy\nSnowy\nStormy"
+    },
+    {
+      "fieldname": "special_events",
+      "fieldtype": "Small Text",
+      "label": "Special Events"
+    }
+  ],
+  "autoname": "format:{outlet}-{summary_date}",
+  "title_field": "summary_date",
+  "search_fields": "summary_date, outlet",
+  "sort_field": "summary_date",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1
+    },
+    {
+      "role": "Restaurant Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    },
+    {
+      "role": "Accounts User",
+      "read": 1
+    }
+  ]
+}

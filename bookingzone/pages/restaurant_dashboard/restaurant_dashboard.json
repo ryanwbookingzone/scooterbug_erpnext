@@ -1,0 +1,14 @@
+{
+  "name": "Restaurant Dashboard",
+  "module": "BookingZone",
+  "doctype": "Page",
+  "page_name": "restaurant-dashboard",
+  "title": "Restaurant Dashboard",
+  "icon": "fa fa-dashboard",
+  "standard": "Yes",
+  "roles": [
+    {"role": "System Manager"},
+    {"role": "Restaurant Manager"},
+    {"role": "Accounts Manager"}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Recipe Manager",
+  "module": "BookingZone",
+  "doctype": "Page",
+  "page_name": "recipe-manager",
+  "title": "Recipe Manager",
+  "icon": "fa fa-utensils",
+  "standard": "Yes",
+  "roles": [
+    {"role": "System Manager"},
+    {"role": "Restaurant Manager"},
+    {"role": "Kitchen Manager"}
+  ]
+}

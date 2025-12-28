@@ -1,1 +1,47 @@
 frappe
+# BookingZone Dependencies
+# =========================
+
+# Frappe Framework (core)
+frappe
+
+# OCR Dependencies (PaddleOCR)
+paddlepaddle>=2.5.0
+paddleocr>=2.7.0
+opencv-python-headless>=4.8.0
+Pillow>=10.0.0
+numpy>=1.24.0
+
+# Payment Processing
+stripe>=7.0.0
+requests>=2.31.0
+httpx>=0.25.0
+
+# Data Processing
+pandas>=2.0.0
+python-dateutil>=2.8.0
+
+# Image Processing
+pdf2image>=1.16.0
+PyMuPDF>=1.23.0
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+
+# Barcode/QR
+pyzbar>=0.1.9
+qrcode>=7.4.0
+
+# Currency/Localization
+babel>=2.12.0
+
+# Async support
+aiohttp>=3.9.0
+
+# JSON handling
+orjson>=3.9.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0

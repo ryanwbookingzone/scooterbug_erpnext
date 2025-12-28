@@ -1,0 +1,290 @@
+{
+  "name": "Prime Cost Report",
+  "module": "BookingZone",
+  "doctype": "DocType",
+  "document_type": "Document",
+  "engine": "InnoDB",
+  "field_order": [
+    "report_date",
+    "outlet",
+    "period_type",
+    "column_break_1",
+    "from_date",
+    "to_date",
+    "status",
+    "section_sales",
+    "total_sales",
+    "section_food_cost",
+    "beginning_inventory",
+    "purchases",
+    "ending_inventory",
+    "column_break_2",
+    "cost_of_goods_sold",
+    "food_cost_percentage",
+    "food_cost_target",
+    "section_labor",
+    "total_labor_cost",
+    "management_labor",
+    "hourly_labor",
+    "column_break_3",
+    "benefits_taxes",
+    "labor_cost_percentage",
+    "labor_cost_target",
+    "section_prime_cost",
+    "total_prime_cost",
+    "prime_cost_percentage",
+    "column_break_4",
+    "prime_cost_target",
+    "variance_from_target",
+    "section_breakdown",
+    "food_cost_breakdown",
+    "labor_cost_breakdown",
+    "section_notes",
+    "analysis_notes",
+    "action_items"
+  ],
+  "fields": [
+    {
+      "fieldname": "report_date",
+      "fieldtype": "Date",
+      "label": "Report Date",
+      "reqd": 1,
+      "default": "Today",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "outlet",
+      "fieldtype": "Link",
+      "label": "Outlet",
+      "options": "Outlet",
+      "reqd": 1,
+      "in_list_view": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "period_type",
+      "fieldtype": "Select",
+      "label": "Period Type",
+      "options": "Daily\nWeekly\nBi-Weekly\nMonthly",
+      "default": "Weekly",
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "from_date",
+      "fieldtype": "Date",
+      "label": "From Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "to_date",
+      "fieldtype": "Date",
+      "label": "To Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Draft\nCalculated\nReviewed\nApproved",
+      "default": "Draft",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "section_sales",
+      "fieldtype": "Section Break",
+      "label": "Sales"
+    },
+    {
+      "fieldname": "total_sales",
+      "fieldtype": "Currency",
+      "label": "Total Sales",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "section_food_cost",
+      "fieldtype": "Section Break",
+      "label": "Food Cost (Cost of Goods Sold)"
+    },
+    {
+      "fieldname": "beginning_inventory",
+      "fieldtype": "Currency",
+      "label": "Beginning Inventory"
+    },
+    {
+      "fieldname": "purchases",
+      "fieldtype": "Currency",
+      "label": "Purchases"
+    },
+    {
+      "fieldname": "ending_inventory",
+      "fieldtype": "Currency",
+      "label": "Ending Inventory"
+    },
+    {
+      "fieldname": "column_break_2",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "cost_of_goods_sold",
+      "fieldtype": "Currency",
+      "label": "Cost of Goods Sold",
+      "read_only": 1,
+      "description": "Beginning + Purchases - Ending"
+    },
+    {
+      "fieldname": "food_cost_percentage",
+      "fieldtype": "Percent",
+      "label": "Food Cost %",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "food_cost_target",
+      "fieldtype": "Percent",
+      "label": "Food Cost Target %",
+      "default": 30
+    },
+    {
+      "fieldname": "section_labor",
+      "fieldtype": "Section Break",
+      "label": "Labor Cost"
+    },
+    {
+      "fieldname": "total_labor_cost",
+      "fieldtype": "Currency",
+      "label": "Total Labor Cost",
+      "read_only": 1
+    },
+    {
+      "fieldname": "management_labor",
+      "fieldtype": "Currency",
+      "label": "Management Labor"
+    },
+    {
+      "fieldname": "hourly_labor",
+      "fieldtype": "Currency",
+      "label": "Hourly Labor"
+    },
+    {
+      "fieldname": "column_break_3",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "benefits_taxes",
+      "fieldtype": "Currency",
+      "label": "Benefits & Taxes"
+    },
+    {
+      "fieldname": "labor_cost_percentage",
+      "fieldtype": "Percent",
+      "label": "Labor Cost %",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "labor_cost_target",
+      "fieldtype": "Percent",
+      "label": "Labor Cost Target %",
+      "default": 30
+    },
+    {
+      "fieldname": "section_prime_cost",
+      "fieldtype": "Section Break",
+      "label": "Prime Cost Summary"
+    },
+    {
+      "fieldname": "total_prime_cost",
+      "fieldtype": "Currency",
+      "label": "Total Prime Cost",
+      "read_only": 1,
+      "description": "Food Cost + Labor Cost"
+    },
+    {
+      "fieldname": "prime_cost_percentage",
+      "fieldtype": "Percent",
+      "label": "Prime Cost %",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "column_break_4",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "prime_cost_target",
+      "fieldtype": "Percent",
+      "label": "Prime Cost Target %",
+      "default": 60,
+      "description": "Industry standard: 60-65%"
+    },
+    {
+      "fieldname": "variance_from_target",
+      "fieldtype": "Percent",
+      "label": "Variance from Target",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_breakdown",
+      "fieldtype": "Section Break",
+      "label": "Detailed Breakdown",
+      "collapsible": 1
+    },
+    {
+      "fieldname": "food_cost_breakdown",
+      "fieldtype": "Text",
+      "label": "Food Cost Breakdown",
+      "read_only": 1
+    },
+    {
+      "fieldname": "labor_cost_breakdown",
+      "fieldtype": "Text",
+      "label": "Labor Cost Breakdown",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_notes",
+      "fieldtype": "Section Break",
+      "label": "Analysis & Actions"
+    },
+    {
+      "fieldname": "analysis_notes",
+      "fieldtype": "Small Text",
+      "label": "Analysis Notes"
+    },
+    {
+      "fieldname": "action_items",
+      "fieldtype": "Small Text",
+      "label": "Action Items"
+    }
+  ],
+  "autoname": "naming_series:",
+  "naming_series": "PRIME-.YYYY.-.#####",
+  "title_field": "report_date",
+  "search_fields": "report_date, outlet, period_type",
+  "sort_field": "report_date",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1
+    },
+    {
+      "role": "Restaurant Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    },
+    {
+      "role": "Accounts Manager",
+      "read": 1
+    }
+  ]
+}

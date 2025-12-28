@@ -1,0 +1,287 @@
+{
+    "name": "Payment Transaction",
+    "module": "Accounts",
+    "doctype": "DocType",
+    "document_type": "Document",
+    "engine": "InnoDB",
+    "field_order": [
+        "transaction_details_section",
+        "transaction_id",
+        "hyperswitch_payment_id",
+        "column_break_1",
+        "gateway",
+        "selected_processor",
+        "amount_section",
+        "amount",
+        "currency",
+        "column_break_2",
+        "fee_amount",
+        "net_amount",
+        "payment_method_section",
+        "payment_method",
+        "card_brand",
+        "column_break_3",
+        "card_last_four",
+        "card_exp_month",
+        "card_exp_year",
+        "reference_section",
+        "customer",
+        "sales_invoice",
+        "column_break_4",
+        "payment_entry",
+        "client_secret",
+        "status_section",
+        "status",
+        "failure_reason",
+        "column_break_5",
+        "created_at",
+        "completed_at",
+        "refund_section",
+        "refund_amount",
+        "refund_reason",
+        "refund_date",
+        "response_section",
+        "gateway_response"
+    ],
+    "fields": [
+        {
+            "fieldname": "transaction_details_section",
+            "fieldtype": "Section Break",
+            "label": "Transaction Details"
+        },
+        {
+            "fieldname": "transaction_id",
+            "fieldtype": "Data",
+            "label": "Transaction ID",
+            "read_only": 1
+        },
+        {
+            "fieldname": "hyperswitch_payment_id",
+            "fieldtype": "Data",
+            "label": "Hyperswitch Payment ID",
+            "read_only": 1
+        },
+        {
+            "fieldname": "column_break_1",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "gateway",
+            "fieldtype": "Link",
+            "label": "Payment Gateway",
+            "options": "Payment Gateway Configuration"
+        },
+        {
+            "fieldname": "selected_processor",
+            "fieldtype": "Data",
+            "label": "Selected Processor",
+            "read_only": 1
+        },
+        {
+            "fieldname": "amount_section",
+            "fieldtype": "Section Break",
+            "label": "Amount"
+        },
+        {
+            "fieldname": "amount",
+            "fieldtype": "Currency",
+            "label": "Amount",
+            "reqd": 1
+        },
+        {
+            "fieldname": "currency",
+            "fieldtype": "Link",
+            "label": "Currency",
+            "options": "Currency",
+            "default": "USD"
+        },
+        {
+            "fieldname": "column_break_2",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "fee_amount",
+            "fieldtype": "Currency",
+            "label": "Fee Amount",
+            "read_only": 1
+        },
+        {
+            "fieldname": "net_amount",
+            "fieldtype": "Currency",
+            "label": "Net Amount",
+            "read_only": 1
+        },
+        {
+            "fieldname": "payment_method_section",
+            "fieldtype": "Section Break",
+            "label": "Payment Method"
+        },
+        {
+            "fieldname": "payment_method",
+            "fieldtype": "Select",
+            "label": "Payment Method",
+            "options": "\nCredit Card\nDebit Card\nACH\nPayPal\nApple Pay\nGoogle Pay\nBank Transfer"
+        },
+        {
+            "fieldname": "card_brand",
+            "fieldtype": "Data",
+            "label": "Card Brand",
+            "read_only": 1
+        },
+        {
+            "fieldname": "column_break_3",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "card_last_four",
+            "fieldtype": "Data",
+            "label": "Card Last Four",
+            "read_only": 1
+        },
+        {
+            "fieldname": "card_exp_month",
+            "fieldtype": "Data",
+            "label": "Card Exp Month",
+            "read_only": 1
+        },
+        {
+            "fieldname": "card_exp_year",
+            "fieldtype": "Data",
+            "label": "Card Exp Year",
+            "read_only": 1
+        },
+        {
+            "fieldname": "reference_section",
+            "fieldtype": "Section Break",
+            "label": "References"
+        },
+        {
+            "fieldname": "customer",
+            "fieldtype": "Link",
+            "label": "Customer",
+            "options": "Customer"
+        },
+        {
+            "fieldname": "sales_invoice",
+            "fieldtype": "Link",
+            "label": "Sales Invoice",
+            "options": "Sales Invoice"
+        },
+        {
+            "fieldname": "column_break_4",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "payment_entry",
+            "fieldtype": "Link",
+            "label": "Payment Entry",
+            "options": "Payment Entry",
+            "read_only": 1
+        },
+        {
+            "fieldname": "client_secret",
+            "fieldtype": "Password",
+            "label": "Client Secret",
+            "hidden": 1
+        },
+        {
+            "fieldname": "status_section",
+            "fieldtype": "Section Break",
+            "label": "Status"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Pending\nProcessing\nSucceeded\nFailed\nRefunded\nPartially Refunded\nCancelled",
+            "default": "Pending",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "failure_reason",
+            "fieldtype": "Small Text",
+            "label": "Failure Reason",
+            "read_only": 1
+        },
+        {
+            "fieldname": "column_break_5",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "created_at",
+            "fieldtype": "Datetime",
+            "label": "Created At",
+            "default": "Now",
+            "read_only": 1
+        },
+        {
+            "fieldname": "completed_at",
+            "fieldtype": "Datetime",
+            "label": "Completed At",
+            "read_only": 1
+        },
+        {
+            "fieldname": "refund_section",
+            "fieldtype": "Section Break",
+            "label": "Refund Details",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "refund_amount",
+            "fieldtype": "Currency",
+            "label": "Refund Amount",
+            "read_only": 1
+        },
+        {
+            "fieldname": "refund_reason",
+            "fieldtype": "Small Text",
+            "label": "Refund Reason"
+        },
+        {
+            "fieldname": "refund_date",
+            "fieldtype": "Datetime",
+            "label": "Refund Date",
+            "read_only": 1
+        },
+        {
+            "fieldname": "response_section",
+            "fieldtype": "Section Break",
+            "label": "Gateway Response",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "gateway_response",
+            "fieldtype": "JSON",
+            "label": "Gateway Response",
+            "read_only": 1
+        }
+    ],
+    "permissions": [
+        {
+            "role": "Accounts User",
+            "read": 1,
+            "write": 0,
+            "create": 0,
+            "delete": 0
+        },
+        {
+            "role": "Accounts Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0
+        },
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "title_field": "transaction_id",
+    "autoname": "naming_series:PAY-.YYYY.-.#####",
+    "naming_rule": "By \"Naming Series\" field"
+}

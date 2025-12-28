@@ -1,0 +1,14 @@
+{
+  "name": "Inventory Count Entry",
+  "module": "BookingZone",
+  "doctype": "Page",
+  "page_name": "inventory-count-entry",
+  "title": "Inventory Count Entry",
+  "icon": "fa fa-clipboard-list",
+  "standard": "Yes",
+  "roles": [
+    {"role": "System Manager"},
+    {"role": "Restaurant Manager"},
+    {"role": "Stock Manager"}
+  ]
+}
