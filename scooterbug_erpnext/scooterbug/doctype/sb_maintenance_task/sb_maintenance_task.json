@@ -1,0 +1,136 @@
+{
+  "name": "SB Maintenance Task",
+  "module": "scooterbug",
+  "autoname": "naming_series:",
+  "naming_rule": "",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "is_submittable": 0,
+  "istable": 0,
+  "editable_grid": 1,
+  "track_changes": 1,
+  "track_views": 0,
+  "allow_rename": 1,
+  "allow_copy": 0,
+  "allow_import": 0,
+  "quick_entry": 0,
+  "show_name_in_global_search": 0,
+  "engine": "InnoDB",
+  "doctype": "DocType",
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "label": "Series",
+      "fieldtype": "Select",
+      "options": "MT-.YYYY.-",
+      "default": "MT-.YYYY.-",
+      "hidden": 1
+    },
+    {
+      "fieldname": "equipment",
+      "label": "Equipment",
+      "fieldtype": "Link",
+      "options": "SB Equipment",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "location",
+      "label": "Location",
+      "fieldtype": "Link",
+      "options": "SB Location",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "task_type",
+      "label": "Task Type",
+      "fieldtype": "Select",
+      "options": "Inspection\nRepair\nBattery Replacement\nTire Replacement\nCleaning\nOther",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "priority",
+      "label": "Priority",
+      "fieldtype": "Select",
+      "options": "Low\nMedium\nHigh\nUrgent",
+      "default": "Medium",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Open\nIn Progress\nCompleted\nCancelled",
+      "default": "Open",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "assigned_to",
+      "label": "Assigned To",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "scheduled_date",
+      "label": "Scheduled Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "completed_date",
+      "label": "Completed Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "resolution_notes",
+      "label": "Resolution Notes",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "parts_used",
+      "label": "Parts Used",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "labor_hours",
+      "label": "Labor Hours",
+      "fieldtype": "Float"
+    },
+    {
+      "fieldname": "parts_cost",
+      "label": "Parts Cost",
+      "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "labor_cost",
+      "label": "Labor Cost",
+      "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "total_cost",
+      "label": "Total Cost",
+      "fieldtype": "Currency"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "report": 1,
+      "export": 1,
+      "share": 1,
+      "print": 1,
+      "email": 1
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "states": []
+}

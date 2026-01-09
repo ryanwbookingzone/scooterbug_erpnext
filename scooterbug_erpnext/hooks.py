@@ -34,11 +34,11 @@ fixtures = [
 # ---------------
 
 doc_events = {
-    "Equipment Booking": {
+    "SB Booking": {
         "on_submit": "scooterbug_erpnext.api.booking.on_booking_submit",
         "on_cancel": "scooterbug_erpnext.api.booking.on_booking_cancel",
     },
-    "Check In Out Log": {
+    "SB Check In Out": {
         "after_insert": "scooterbug_erpnext.api.checkinout.update_equipment_status",
     },
 }
@@ -60,8 +60,8 @@ scheduler_events = {
 # -----------
 
 has_permission = {
-    "Equipment": "scooterbug_erpnext.permissions.equipment_permission",
-    "Equipment Booking": "scooterbug_erpnext.permissions.booking_permission",
+    "SB Equipment": "scooterbug_erpnext.permissions.equipment_permission",
+    "SB Booking": "scooterbug_erpnext.permissions.booking_permission",
 }
 
 # DocType Class

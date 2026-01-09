@@ -1,0 +1,136 @@
+{
+  "name": "SB Incident",
+  "module": "scooterbug",
+  "autoname": "naming_series:",
+  "naming_rule": "",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "is_submittable": 0,
+  "istable": 0,
+  "editable_grid": 1,
+  "track_changes": 0,
+  "track_views": 0,
+  "allow_rename": 1,
+  "allow_copy": 0,
+  "allow_import": 0,
+  "quick_entry": 0,
+  "show_name_in_global_search": 0,
+  "engine": "InnoDB",
+  "doctype": "DocType",
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "options": "INC-.YYYY.-",
+      "hidden": 1
+    },
+    {
+      "fieldname": "incident_type",
+      "label": "Incident Type",
+      "fieldtype": "Select",
+      "options": "Accident\nInjury\nTheft\nVandalism\nEquipment Failure\nCustomer Complaint\nOther",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "severity",
+      "label": "Severity",
+      "fieldtype": "Select",
+      "options": "Low\nMedium\nHigh\nCritical",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Reported\nInvestigating\nResolved\nClosed",
+      "default": "Reported",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "incident_date",
+      "label": "Incident Date",
+      "fieldtype": "Datetime",
+      "reqd": 1
+    },
+    {
+      "fieldname": "location",
+      "label": "Location",
+      "fieldtype": "Link",
+      "options": "SB Location"
+    },
+    {
+      "fieldname": "equipment",
+      "label": "Equipment",
+      "fieldtype": "Link",
+      "options": "SB Equipment"
+    },
+    {
+      "fieldname": "booking",
+      "label": "Booking",
+      "fieldtype": "Link",
+      "options": "SB Booking"
+    },
+    {
+      "fieldname": "customer",
+      "label": "Customer",
+      "fieldtype": "Link",
+      "options": "SB Customer"
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "injuries_reported",
+      "label": "Injuries Reported",
+      "fieldtype": "Check",
+      "default": "0"
+    },
+    {
+      "fieldname": "injury_details",
+      "label": "Injury Details",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "police_report_filed",
+      "label": "Police Report Filed",
+      "fieldtype": "Check",
+      "default": "0"
+    },
+    {
+      "fieldname": "police_report_number",
+      "label": "Police Report Number",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "resolution_notes",
+      "label": "Resolution Notes",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "resolved_date",
+      "label": "Resolved Date",
+      "fieldtype": "Date"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "report": 1,
+      "export": 1,
+      "share": 1,
+      "print": 1,
+      "email": 1
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "states": []
+}

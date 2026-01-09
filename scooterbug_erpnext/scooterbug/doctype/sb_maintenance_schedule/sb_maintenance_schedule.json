@@ -1,0 +1,82 @@
+{
+  "name": "SB Maintenance Schedule",
+  "module": "scooterbug",
+  "autoname": "naming_series:",
+  "naming_rule": "",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "is_submittable": 0,
+  "istable": 0,
+  "editable_grid": 1,
+  "track_changes": 0,
+  "track_views": 0,
+  "allow_rename": 1,
+  "allow_copy": 0,
+  "allow_import": 0,
+  "quick_entry": 0,
+  "show_name_in_global_search": 0,
+  "engine": "InnoDB",
+  "doctype": "DocType",
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "options": "MS-.YYYY.-",
+      "hidden": 1
+    },
+    {
+      "fieldname": "schedule_name",
+      "label": "Schedule Name",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "equipment_type",
+      "label": "Equipment Type",
+      "fieldtype": "Link",
+      "options": "SB Equipment Type"
+    },
+    {
+      "fieldname": "frequency",
+      "label": "Frequency",
+      "fieldtype": "Select",
+      "options": "Daily\nWeekly\nMonthly\nQuarterly\nAnnually",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "task_description",
+      "label": "Task Description",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "estimated_duration_hours",
+      "label": "Estimated Duration (Hours)",
+      "fieldtype": "Float"
+    },
+    {
+      "fieldname": "is_active",
+      "label": "Is Active",
+      "fieldtype": "Check",
+      "default": "1"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "report": 1,
+      "export": 1,
+      "share": 1,
+      "print": 1,
+      "email": 1
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "states": []
+}

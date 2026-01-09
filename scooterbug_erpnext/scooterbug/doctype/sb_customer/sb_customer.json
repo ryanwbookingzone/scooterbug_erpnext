@@ -1,0 +1,133 @@
+{
+  "name": "SB Customer",
+  "module": "scooterbug",
+  "autoname": "naming_series:",
+  "naming_rule": "",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "is_submittable": 0,
+  "istable": 0,
+  "editable_grid": 1,
+  "track_changes": 1,
+  "track_views": 0,
+  "allow_rename": 1,
+  "allow_copy": 0,
+  "allow_import": 0,
+  "quick_entry": 0,
+  "show_name_in_global_search": 0,
+  "engine": "InnoDB",
+  "doctype": "DocType",
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "label": "Series",
+      "fieldtype": "Select",
+      "options": "CUST-.YYYY.-",
+      "default": "CUST-.YYYY.-",
+      "hidden": 1
+    },
+    {
+      "fieldname": "first_name",
+      "label": "First Name",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "last_name",
+      "label": "Last Name",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "email",
+      "label": "Email",
+      "fieldtype": "Data",
+      "options": "Email",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "phone",
+      "label": "Phone",
+      "fieldtype": "Data",
+      "options": "Phone"
+    },
+    {
+      "fieldname": "address",
+      "label": "Address",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "city",
+      "label": "City",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "state",
+      "label": "State",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "zip_code",
+      "label": "Zip Code",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "country",
+      "label": "Country",
+      "fieldtype": "Data",
+      "default": "USA"
+    },
+    {
+      "fieldname": "drivers_license",
+      "label": "Drivers License",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "emergency_contact_name",
+      "label": "Emergency Contact Name",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "emergency_contact_phone",
+      "label": "Emergency Contact Phone",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "total_bookings",
+      "label": "Total Bookings",
+      "fieldtype": "Int",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_spent",
+      "label": "Total Spent",
+      "fieldtype": "Currency",
+      "read_only": 1
+    },
+    {
+      "fieldname": "notes",
+      "label": "Notes",
+      "fieldtype": "Text"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "report": 1,
+      "export": 1,
+      "share": 1,
+      "print": 1,
+      "email": 1
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "states": []
+}

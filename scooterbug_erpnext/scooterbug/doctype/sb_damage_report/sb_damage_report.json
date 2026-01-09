@@ -1,0 +1,144 @@
+{
+  "name": "SB Damage Report",
+  "module": "scooterbug",
+  "autoname": "naming_series:",
+  "naming_rule": "",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "is_submittable": 0,
+  "istable": 0,
+  "editable_grid": 1,
+  "track_changes": 1,
+  "track_views": 0,
+  "allow_rename": 1,
+  "allow_copy": 0,
+  "allow_import": 0,
+  "quick_entry": 0,
+  "show_name_in_global_search": 0,
+  "engine": "InnoDB",
+  "doctype": "DocType",
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "label": "Series",
+      "fieldtype": "Select",
+      "options": "DMG-.YYYY.-",
+      "default": "DMG-.YYYY.-",
+      "hidden": 1
+    },
+    {
+      "fieldname": "booking",
+      "label": "Booking",
+      "fieldtype": "Link",
+      "options": "SB Booking",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "equipment",
+      "label": "Equipment",
+      "fieldtype": "Link",
+      "options": "SB Equipment",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "location",
+      "label": "Location",
+      "fieldtype": "Link",
+      "options": "SB Location",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "reported_by",
+      "label": "Reported By",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "report_date",
+      "label": "Report Date",
+      "fieldtype": "Date",
+      "reqd": 1,
+      "default": "Today",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "damage_type",
+      "label": "Damage Type",
+      "fieldtype": "Select",
+      "options": "Cosmetic\nMechanical\nElectrical\nStructural\nOther",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "severity",
+      "label": "Severity",
+      "fieldtype": "Select",
+      "options": "Minor\nModerate\nMajor\nSevere",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Reported\nUnder Review\nApproved\nDenied\nResolved",
+      "default": "Reported",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "waiver_purchased",
+      "label": "Damage Waiver Purchased",
+      "fieldtype": "Check",
+      "default": "0"
+    },
+    {
+      "fieldname": "estimated_repair_cost",
+      "label": "Estimated Repair Cost",
+      "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "actual_repair_cost",
+      "label": "Actual Repair Cost",
+      "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "customer_charged",
+      "label": "Customer Charged",
+      "fieldtype": "Currency"
+    },
+    {
+      "fieldname": "photos",
+      "label": "Photos",
+      "fieldtype": "Attach"
+    },
+    {
+      "fieldname": "resolution_notes",
+      "label": "Resolution Notes",
+      "fieldtype": "Text"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "report": 1,
+      "export": 1,
+      "share": 1,
+      "print": 1,
+      "email": 1
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "states": []
+}

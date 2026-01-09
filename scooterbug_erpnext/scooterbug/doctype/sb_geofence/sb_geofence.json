@@ -1,0 +1,107 @@
+{
+  "name": "SB Geofence",
+  "module": "scooterbug",
+  "autoname": "naming_series:",
+  "naming_rule": "",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "is_submittable": 0,
+  "istable": 0,
+  "editable_grid": 1,
+  "track_changes": 0,
+  "track_views": 0,
+  "allow_rename": 1,
+  "allow_copy": 0,
+  "allow_import": 0,
+  "quick_entry": 0,
+  "show_name_in_global_search": 0,
+  "engine": "InnoDB",
+  "doctype": "DocType",
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "options": "GEO-.YYYY.-",
+      "hidden": 1
+    },
+    {
+      "fieldname": "zone_name",
+      "label": "Zone Name",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "zone_type",
+      "label": "Zone Type",
+      "fieldtype": "Select",
+      "options": "Allowed\nRestricted\nWarning",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "location",
+      "label": "Location",
+      "fieldtype": "Link",
+      "options": "SB Location"
+    },
+    {
+      "fieldname": "center_latitude",
+      "label": "Center Latitude",
+      "fieldtype": "Float",
+      "reqd": 1
+    },
+    {
+      "fieldname": "center_longitude",
+      "label": "Center Longitude",
+      "fieldtype": "Float",
+      "reqd": 1
+    },
+    {
+      "fieldname": "radius_meters",
+      "label": "Radius (Meters)",
+      "fieldtype": "Float",
+      "reqd": 1
+    },
+    {
+      "fieldname": "is_active",
+      "label": "Is Active",
+      "fieldtype": "Check",
+      "default": "1"
+    },
+    {
+      "fieldname": "alert_on_entry",
+      "label": "Alert on Entry",
+      "fieldtype": "Check",
+      "default": "0"
+    },
+    {
+      "fieldname": "alert_on_exit",
+      "label": "Alert on Exit",
+      "fieldtype": "Check",
+      "default": "0"
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Text"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "report": 1,
+      "export": 1,
+      "share": 1,
+      "print": 1,
+      "email": 1
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "states": []
+}

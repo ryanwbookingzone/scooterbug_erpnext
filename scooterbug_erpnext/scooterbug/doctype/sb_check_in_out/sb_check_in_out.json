@@ -1,0 +1,115 @@
+{
+  "name": "SB Check In Out",
+  "module": "scooterbug",
+  "autoname": "naming_series:",
+  "naming_rule": "",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "is_submittable": 0,
+  "istable": 0,
+  "editable_grid": 1,
+  "track_changes": 1,
+  "track_views": 0,
+  "allow_rename": 1,
+  "allow_copy": 0,
+  "allow_import": 0,
+  "quick_entry": 0,
+  "show_name_in_global_search": 0,
+  "engine": "InnoDB",
+  "doctype": "DocType",
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "label": "Series",
+      "fieldtype": "Select",
+      "options": "CIO-.YYYY.-",
+      "default": "CIO-.YYYY.-",
+      "hidden": 1
+    },
+    {
+      "fieldname": "booking",
+      "label": "Booking",
+      "fieldtype": "Link",
+      "options": "SB Booking",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "equipment",
+      "label": "Equipment",
+      "fieldtype": "Link",
+      "options": "SB Equipment",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "transaction_type",
+      "label": "Transaction Type",
+      "fieldtype": "Select",
+      "options": "Check Out\nCheck In",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "transaction_time",
+      "label": "Transaction Time",
+      "fieldtype": "Datetime",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "staff_member",
+      "label": "Staff Member",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "location",
+      "label": "Location",
+      "fieldtype": "Link",
+      "options": "SB Location"
+    },
+    {
+      "fieldname": "battery_level",
+      "label": "Battery Level",
+      "fieldtype": "Percent"
+    },
+    {
+      "fieldname": "condition_score",
+      "label": "Condition Score (1-10)",
+      "fieldtype": "Int"
+    },
+    {
+      "fieldname": "condition_notes",
+      "label": "Condition Notes",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "customer_signature",
+      "label": "Customer Signature",
+      "fieldtype": "Attach"
+    },
+    {
+      "fieldname": "photos",
+      "label": "Photos",
+      "fieldtype": "Attach"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "report": 1,
+      "export": 1,
+      "share": 1,
+      "print": 1,
+      "email": 1
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "states": []
+}

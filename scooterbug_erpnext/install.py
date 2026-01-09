@@ -4,15 +4,20 @@ def after_install():
     """Setup initial data after app installation"""
     try:
         # Only create data if the doctypes exist
-        if frappe.db.exists("DocType", "ScooterBug Location"):
+        if frappe.db.exists("DocType", "SB Location"):
             create_locations()
         else:
-            print("ScooterBug Location doctype not found, skipping location creation")
+            print("SB Location doctype not found, skipping location creation")
         
-        if frappe.db.exists("DocType", "Equipment"):
-            create_sample_equipment_types()
+        if frappe.db.exists("DocType", "SB Equipment Type"):
+            create_equipment_types()
         else:
-            print("Equipment doctype not found, skipping equipment creation")
+            print("SB Equipment Type doctype not found, skipping equipment type creation")
+        
+        if frappe.db.exists("DocType", "SB Equipment"):
+            create_sample_equipment()
+        else:
+            print("SB Equipment doctype not found, skipping equipment creation")
         
         print("ScooterBug app installed successfully!")
     except Exception as e:
@@ -68,9 +73,9 @@ def create_locations():
     
     for loc in locations:
         try:
-            if not frappe.db.exists("ScooterBug Location", loc["location_code"]):
+            if not frappe.db.exists("SB Location", loc["location_code"]):
                 doc = frappe.get_doc({
-                    "doctype": "ScooterBug Location",
+                    "doctype": "SB Location",
                     **loc
                 })
                 doc.insert(ignore_permissions=True)
@@ -78,100 +83,109 @@ def create_locations():
         except Exception as e:
             print(f"Could not create location {loc['location_name']}: {e}")
 
-def create_sample_equipment_types():
+def create_equipment_types():
+    """Create default equipment types"""
+    equipment_types = [
+        {
+            "type_name": "ECV Scooter",
+            "category": "Mobility",
+            "description": "Electric Convenience Vehicle - 4-wheel scooter for mobility assistance",
+            "daily_rate": 55,
+            "weekly_rate": 275,
+            "damage_waiver_rate": 6
+        },
+        {
+            "type_name": "Standard Wheelchair",
+            "category": "Mobility",
+            "description": "Manual wheelchair for mobility assistance",
+            "daily_rate": 15,
+            "weekly_rate": 75,
+            "damage_waiver_rate": 3
+        },
+        {
+            "type_name": "Double Stroller",
+            "category": "Stroller",
+            "description": "Side-by-side double stroller for two children",
+            "daily_rate": 25,
+            "weekly_rate": 125,
+            "damage_waiver_rate": 4
+        },
+        {
+            "type_name": "Single Stroller",
+            "category": "Stroller",
+            "description": "Single stroller for one child",
+            "daily_rate": 18,
+            "weekly_rate": 90,
+            "damage_waiver_rate": 3
+        }
+    ]
+    
+    for eq_type in equipment_types:
+        try:
+            if not frappe.db.exists("SB Equipment Type", eq_type["type_name"]):
+                doc = frappe.get_doc({
+                    "doctype": "SB Equipment Type",
+                    **eq_type
+                })
+                doc.insert(ignore_permissions=True)
+                print(f"Created equipment type: {eq_type['type_name']}")
+        except Exception as e:
+            print(f"Could not create equipment type {eq_type['type_name']}: {e}")
+
+def create_sample_equipment():
     """Create sample equipment for demonstration"""
     equipment_list = [
         {
             "equipment_id": "EQ-0001",
-            "equipment_name": "Pride Go-Go Elite Traveller",
             "equipment_type": "ECV Scooter",
-            "category": "ECV Scooter",
             "location": "ORLANDO",
             "status": "Available",
             "serial_number": "PGE-2024-0001",
             "manufacturer": "Pride Mobility",
             "model": "Go-Go Elite Traveller",
-            "weight_lbs": 96,
-            "weight_capacity_lbs": 325,
-            "battery_life_hours": 8,
-            "max_speed_mph": 4.5,
-            "daily_rate": 55,
-            "weekly_rate": 275,
-            "damage_waiver_rate": 6,
-            "current_battery_level": 100,
-            "is_available": 1,
-            "features": "Adjustable tiller, Front basket, USB charging port, LED headlight"
+            "current_battery_level": 100
         },
         {
             "equipment_id": "EQ-0002",
-            "equipment_name": "Drive Medical Scout",
-            "equipment_type": "Standard Scooter",
-            "category": "ECV Scooter",
+            "equipment_type": "ECV Scooter",
             "location": "ORLANDO",
             "status": "Available",
             "serial_number": "DMS-2024-0001",
             "manufacturer": "Drive Medical",
             "model": "Scout",
-            "weight_lbs": 85,
-            "weight_capacity_lbs": 300,
-            "battery_life_hours": 6,
-            "max_speed_mph": 4,
-            "daily_rate": 45,
-            "weekly_rate": 225,
-            "damage_waiver_rate": 6,
-            "current_battery_level": 100,
-            "is_available": 1,
-            "features": "Compact design, Easy disassembly, Front basket"
+            "current_battery_level": 100
         },
         {
             "equipment_id": "EQ-0003",
-            "equipment_name": "Medline Standard Wheelchair",
             "equipment_type": "Standard Wheelchair",
-            "category": "Wheelchair",
             "location": "ORLANDO",
             "status": "Available",
             "serial_number": "MSW-2024-0001",
             "manufacturer": "Medline",
-            "model": "Standard",
-            "weight_lbs": 35,
-            "weight_capacity_lbs": 300,
-            "daily_rate": 15,
-            "weekly_rate": 75,
-            "damage_waiver_rate": 3,
-            "is_available": 1,
-            "features": "Folding frame, Swing-away footrests, Padded armrests"
+            "model": "Standard"
         },
         {
             "equipment_id": "EQ-0004",
-            "equipment_name": "Baby Jogger City Mini Double",
             "equipment_type": "Double Stroller",
-            "category": "Stroller",
             "location": "ORLANDO",
             "status": "Available",
             "serial_number": "BJD-2024-0001",
             "manufacturer": "Baby Jogger",
-            "model": "City Mini Double",
-            "weight_lbs": 26,
-            "weight_capacity_lbs": 100,
-            "daily_rate": 25,
-            "weekly_rate": 125,
-            "damage_waiver_rate": 4,
-            "is_available": 1,
-            "features": "Side-by-side seating, One-hand fold, UV canopy, Storage basket"
+            "model": "City Mini Double"
         }
     ]
     
     for eq in equipment_list:
         try:
-            if not frappe.db.exists("Equipment", eq["equipment_id"]):
+            if not frappe.db.exists("SB Equipment", eq["equipment_id"]):
                 doc = frappe.get_doc({
-                    "doctype": "Equipment",
+                    "doctype": "SB Equipment",
                     **eq
                 })
                 doc.insert(ignore_permissions=True)
-                print(f"Created equipment: {eq['equipment_name']}")
+                print(f"Created equipment: {eq['equipment_id']}")
         except Exception as e:
-            print(f"Could not create equipment {eq['equipment_name']}: {e}")
+            print(f"Could not create equipment {eq['equipment_id']}: {e}")
     
     try:
         frappe.db.commit()

@@ -5,22 +5,22 @@ from frappe.utils import now_datetime
 @frappe.whitelist()
 def process_check_out(booking_id, equipment_id, battery_level=100, condition="Good", notes=None):
     """Process equipment check-out to customer"""
-    booking = frappe.get_doc("Equipment Booking", booking_id)
-    equipment = frappe.get_doc("Equipment", equipment_id)
+    booking = frappe.get_doc("SB Booking", booking_id)
+    equipment = frappe.get_doc("SB Equipment", equipment_id)
     
     # Create check-out log
     log = frappe.get_doc({
-        "doctype": "Check In Out Log",
-        "log_type": "Check-Out",
+        "doctype": "SB Check In Out",
+        "check_type": "Check-Out",
         "booking": booking_id,
         "equipment": equipment_id,
-        "timestamp": now_datetime(),
+        "check_time": now_datetime(),
         "processed_by": frappe.session.user,
         "location": booking.location,
-        "customer_name": booking.customer_name,
+        "customer": booking.customer,
         "equipment_condition": condition,
         "battery_level": battery_level,
-        "condition_notes": notes
+        "notes": notes
     })
     log.insert(ignore_permissions=True)
     
@@ -30,8 +30,8 @@ def process_check_out(booking_id, equipment_id, battery_level=100, condition="Go
     equipment.save(ignore_permissions=True)
     
     # Update booking status
-    if booking.booking_status == "Confirmed":
-        booking.booking_status = "In Progress"
+    if booking.status == "Confirmed":
+        booking.status = "In Progress"
         booking.save(ignore_permissions=True)
     
     return {
@@ -44,22 +44,22 @@ def process_check_out(booking_id, equipment_id, battery_level=100, condition="Go
 def process_check_in(booking_id, equipment_id, battery_level=None, condition="Good", 
                      damage_reported=False, damage_description=None, notes=None):
     """Process equipment check-in from customer"""
-    booking = frappe.get_doc("Equipment Booking", booking_id)
-    equipment = frappe.get_doc("Equipment", equipment_id)
+    booking = frappe.get_doc("SB Booking", booking_id)
+    equipment = frappe.get_doc("SB Equipment", equipment_id)
     
     # Create check-in log
     log = frappe.get_doc({
-        "doctype": "Check In Out Log",
-        "log_type": "Check-In",
+        "doctype": "SB Check In Out",
+        "check_type": "Check-In",
         "booking": booking_id,
         "equipment": equipment_id,
-        "timestamp": now_datetime(),
+        "check_time": now_datetime(),
         "processed_by": frappe.session.user,
         "location": booking.location,
-        "customer_name": booking.customer_name,
+        "customer": booking.customer,
         "equipment_condition": condition,
         "battery_level": battery_level,
-        "condition_notes": notes,
+        "notes": notes,
         "damage_reported": damage_reported,
         "damage_description": damage_description
     })
@@ -68,24 +68,22 @@ def process_check_in(booking_id, equipment_id, battery_level=None, condition="Go
     # Update equipment status
     if damage_reported or condition in ["Poor", "Damaged"]:
         equipment.status = "Maintenance"
-        equipment.condition_notes = damage_description or notes
         
-        # Create maintenance task if damaged
+        # Create damage report if damaged
         if damage_reported:
-            create_maintenance_task(equipment_id, booking.location, damage_description)
+            create_damage_report(equipment_id, booking_id, booking.location, damage_description)
     else:
         equipment.status = "Available"
     
     if battery_level is not None:
         equipment.current_battery_level = battery_level
     
-    equipment.total_rental_days = (equipment.total_rental_days or 0) + booking.rental_days
     equipment.save(ignore_permissions=True)
     
     # Check if all items returned
     all_returned = check_all_items_returned(booking_id)
     if all_returned:
-        booking.booking_status = "Completed"
+        booking.status = "Completed"
         booking.save(ignore_permissions=True)
     
     return {
@@ -97,42 +95,42 @@ def process_check_in(booking_id, equipment_id, battery_level=None, condition="Go
 
 def check_all_items_returned(booking_id):
     """Check if all equipment items have been returned"""
-    booking = frappe.get_doc("Equipment Booking", booking_id)
+    booking = frappe.get_doc("SB Booking", booking_id)
     
     for item in booking.items:
-        if item.item_type == "Equipment" and item.equipment:
+        if item.equipment:
             # Check for check-in log
-            check_in = frappe.db.exists("Check In Out Log", {
+            check_in = frappe.db.exists("SB Check In Out", {
                 "booking": booking_id,
                 "equipment": item.equipment,
-                "log_type": "Check-In"
+                "check_type": "Check-In"
             })
             if not check_in:
                 return False
     
     return True
 
-def create_maintenance_task(equipment_id, location, description):
-    """Create a maintenance task for damaged equipment"""
-    task = frappe.get_doc({
-        "doctype": "Maintenance Task",
-        "task_type": "General Service",
+def create_damage_report(equipment_id, booking_id, location, description):
+    """Create a damage report for damaged equipment"""
+    report = frappe.get_doc({
+        "doctype": "SB Damage Report",
         "equipment": equipment_id,
+        "booking": booking_id,
         "location": location,
-        "status": "Pending",
-        "priority": "High",
-        "description": f"Damage reported during check-in: {description}"
+        "status": "Reported",
+        "damage_description": description,
+        "reported_date": frappe.utils.today()
     })
-    task.insert(ignore_permissions=True)
-    return task.name
+    report.insert(ignore_permissions=True)
+    return report.name
 
 def update_equipment_status(doc, method):
     """Update equipment status after check-in/out log is created"""
-    equipment = frappe.get_doc("Equipment", doc.equipment)
+    equipment = frappe.get_doc("SB Equipment", doc.equipment)
     
-    if doc.log_type == "Check-Out":
+    if doc.check_type == "Check-Out":
         equipment.status = "Rented"
-    elif doc.log_type == "Check-In":
+    elif doc.check_type == "Check-In":
         if doc.damage_reported:
             equipment.status = "Maintenance"
         else:
@@ -146,17 +144,17 @@ def get_pending_check_ins(location=None):
     from frappe.utils import today
     
     filters = {
-        "booking_status": "In Progress",
-        "pickup_date": today()
+        "status": "In Progress",
+        "return_date": today()
     }
     
     if location:
         filters["location"] = location
     
     bookings = frappe.get_all(
-        "Equipment Booking",
+        "SB Booking",
         filters=filters,
-        fields=["name", "customer_name", "pickup_time", "location"]
+        fields=["name", "customer", "return_date", "location"]
     )
     
     return bookings
@@ -167,7 +165,7 @@ def get_pending_check_outs(location=None):
     from frappe.utils import today
     
     filters = {
-        "booking_status": "Confirmed",
+        "status": "Confirmed",
         "delivery_date": today()
     }
     
@@ -175,9 +173,9 @@ def get_pending_check_outs(location=None):
         filters["location"] = location
     
     bookings = frappe.get_all(
-        "Equipment Booking",
+        "SB Booking",
         filters=filters,
-        fields=["name", "customer_name", "delivery_time", "location", "delivery_address"]
+        fields=["name", "customer", "delivery_date", "location", "delivery_address"]
     )
     
     return bookings
